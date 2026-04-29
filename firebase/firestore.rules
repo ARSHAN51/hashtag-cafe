@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ⚠️  DEVELOPMENT / MOBILE TESTING RULES
+    // Allows all reads and writes so mobile devices on the same WiFi
+    // can access Firestore without auth errors.
+    //
+    // 🔒 Before going to production, replace with:
+    //
+    //   match /menu/{id}          { allow read: if true; allow write: if request.auth != null; }
+    //   match /orders/{id}        { allow read, write: if true; }
+    //   match /waiterRequests/{id}{ allow read, write: if true; }
+    //   match /tables/{id}        { allow read, write: if request.auth != null; }
+    //
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════
+   EXACT REFERENCE DESIGN TOKENS
+   Background:  #121212
+   Card:        #1e1e1e
+   Accent:      #FFC107
+═══════════════════════════════════════ */
+
+:root {
+  --bg:           #121212;
+  --card:         #1e1e1e;
+  --card-2:       #252525;
+  --border:       rgba(255, 255, 255, 0.07);
+  --fg:           #ffffff;
+  --muted:        #888888;
+  --muted-2:      #555555;
+  --accent:       #ffc107;
+  --accent-dim:   rgba(255, 193, 7, 0.15);
+  --danger:       #ff6b6b;
+  --green:        #22c55e;
+  --red:          #ef4444;
+
+  /* Legacy aliases used by admin/other pages */
+  --background:      var(--bg);
+  --foreground:      var(--fg);
+  --panel:           var(--card);
+  --panel-strong:    #0e0e0e;
+  --primary:         var(--accent);
+  --primary-strong:  #ffca2c;
+  --secondary:       rgba(255, 193, 7, 0.14);
+  --muted:           #888888;
+  --accent-bg:       #161618;
+  --shadow:          0 8px 32px rgba(0,0,0,0.5);
+  --shadow-soft:     0 4px 16px rgba(0,0,0,0.35);
+  --ring:            rgba(255, 193, 7, 0.22);
+  --font-app-sans:   "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-app-mono:   "Consolas", "SFMono-Regular", monospace;
+}
+
+/* Light theme (admin/other pages only) */
+html.light {
+  --bg:          #f4ede1;
+  --card:        #ffffff;
+  --card-2:      #f8f0e3;
+  --border:      rgba(0, 0, 0, 0.07);
+  --fg:          #1a1309;
+  --muted:       #75674e;
+  --background:  #f4ede1;
+  --foreground:  #1a1309;
+  --panel:       rgba(255,255,255,0.88);
+  --panel-strong:#fffbf5;
+  --primary:     #f5b700;
+}
+
+@theme inline {
+  --color-background:   var(--bg);
+  --color-foreground:   var(--fg);
+  --color-panel:        var(--card);
+  --color-panel-strong: var(--panel-strong);
+  --color-border:       var(--border);
+  --color-muted:        var(--muted);
+  --color-primary:      var(--accent);
+  --color-primary-strong: var(--primary-strong);
+  --color-secondary:    var(--secondary);
+  --color-danger:       var(--danger);
+  --font-sans:          var(--font-app-sans);
+  --font-mono:          var(--font-app-mono);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  color-scheme: dark;
+  background: var(--bg);
+}
+html.light { color-scheme: light; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-app-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+
+::selection {
+  background: rgba(255,193,7,0.3);
+  color: #111;
+}
+
+a, button { -webkit-tap-highlight-color: transparent; }
+
+/* ─── Utility classes ─── */
+.hide-scrollbar          { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Phone-preview frame: on tablet/desktop the customer surface is centred
+   in a 480px column with a slightly-darker outer background so it looks
+   intentional rather than empty. */
+.phone-frame {
+  width: 100%;
+  min-height: 100dvh;
+  background: #121212;
+}
+@media (min-width: 640px) {
+  .phone-frame {
+    background: #0a0a0a;
+  }
+}
+
+/* Admin / other pages still use these classes */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+.surface-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+.field {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0.85rem 1rem;
+  color: var(--fg);
+  outline: none;
+  -webkit-appearance: none;
+}
+.field:focus { border-color: rgba(255,193,7,0.6); }
+
+.interactive-lift { transition: transform 180ms ease; }
+.interactive-lift:hover { transform: translateY(-3px); }
+
+.accent-chip {
+  border: 1px solid rgba(255,193,7,0.22);
+  background: rgba(255,193,7,0.1);
+  color: var(--accent);
+}
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
