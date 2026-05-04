@@ -100,7 +100,7 @@ export default function CartPage() {
       </header>
 
       {/* Content */}
-      <main className="flex-1 px-4 py-4 pb-32">
+      <main className="flex-1 px-4 py-4 pb-[320px]">
         {!hydrated ? (
           <div className="space-y-3">
             {Array.from({ length: 3 }).map((_, i) => (
@@ -207,7 +207,10 @@ export default function CartPage() {
 
       {/* Fixed bottom — bill + place order */}
       {items.length > 0 ? (
-        <div className="fixed bottom-0 left-1/2 z-20 w-full max-w-[480px] -translate-x-1/2 border-t border-[var(--border)] bg-[var(--panel-strong)] px-4 pb-safe pb-6 pt-4 backdrop-blur-xl">
+        <div
+          className="fixed left-1/2 z-20 w-full max-w-[480px] -translate-x-1/2 border-t border-[var(--border)] bg-[var(--panel-strong)] px-4 pb-6 pt-4 backdrop-blur-xl"
+          style={{ bottom: "calc(60px + env(safe-area-inset-bottom, 0px))" }}
+        >
           {/* Bill rows */}
           <div className="mb-4 space-y-2">
             <div className="flex items-center justify-between text-sm">
